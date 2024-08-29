@@ -114,7 +114,7 @@ The library supports a wide range of locales and their corresponding encodings, 
 
 ## Contributing
 
-Contributions are welcome! Please feel free to open an issue or submit a pull request on [GitHub](https://github.com/spider-rs/auto_encoder).
+Contributions are welcome! Please feel free to open an issue or submit a pull request on [GitHub](https://github.com/spider-rs/auto-encoder).
 
 ## License
 

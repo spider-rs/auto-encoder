@@ -28,7 +28,7 @@
 //! ```rust
 //! use auto_encoder::encode_bytes_from_language;
 //!
-//! let html_content = b"こんにちは、世界！";
+//! let html_content = b"\xE3\x81\x93\xE3\x82\x93\xE3\x81\xAB\xE3\x81\xA1\xE3\x81\xAF\xE3\x80\x81\xE4\xB8\x96\xE7\x95\x8C\xEF\xBC\x81";
 //! let encoded = encode_bytes_from_language(html_content, "ja");
 //! println!("Encoded content: {}", encoded);
 //! ```
