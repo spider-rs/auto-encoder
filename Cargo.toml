@@ -1,0 +1,24 @@
+[package]
+name = "auto_encoder"
+version = "0.1.0"
+edition = "2021"
+description = "Auto encoding library"
+repository = "https://github.com/spider-rs/auto_encoder"
+authors = [
+    "j-mendez <jeff@spider.cloud>"
+]
+readme = "README.md"
+keywords = ["encoding", "auto-encoding"]
+categories = ["web-programming", "command-line-utilities"]
+documentation = "https://docs.rs/auto_encoder"
+license = "MIT"
+
+[dependencies]
+phf = { version = "0.11", features = ["macros"] }
+phf_codegen = "0.11"
+chardetng = { version = "0.1" }
+percent-encoding = "2"
+encoding_rs = { version = "0.8" }
+
+[dev-dependencies]
+maud = "0.26"
