@@ -1,9 +1,9 @@
 [package]
 name = "auto_encoder"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Auto encoding library"
-repository = "https://github.com/spider-rs/auto_encoder"
+repository = "https://github.com/spider-rs/auto-encoder"
 authors = [
     "j-mendez <jeff@spider.cloud>"
 ]
