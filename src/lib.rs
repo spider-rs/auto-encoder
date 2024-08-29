@@ -204,6 +204,10 @@ pub fn encoding_for_locale(locale: &str) -> Option<&'static encoding_rs::Encodin
 
 /// Checks if the file is a known binary format using its initial bytes.
 pub fn is_binary_file(content: &[u8]) -> bool {
+    if content.is_empty() {
+        return false;
+    }
+
     if let Some(&keys) = FIRST_BYTE_MAP.get(&content[0]) {
         for &key in keys {
             if let Some(&k) = ASSET_NUMBERS.get(key) {
