@@ -14,7 +14,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-auto_encoder = "0.1.0"
+auto_encoder = "0.1"
 ```
 
 ## Usage
