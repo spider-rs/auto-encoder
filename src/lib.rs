@@ -61,6 +61,7 @@ use phf::phf_map;
 /// Define a map of file types to their numbers
 pub static ASSET_NUMBERS: phf::Map<&'static str, &'static [u8]> = phf_map! {
     "jpeg" => &[0xFF, 0xD8, 0xFF],
+    "pdf" => b"%PDF",
     "png"  => &[0x89, 0x50, 0x4E, 0x47],
     "gif"  => &[0x47, 0x49, 0x46, 0x38],
     "bmp"  => &[0x42, 0x4D],
@@ -79,6 +80,10 @@ pub static ASSET_NUMBERS: phf::Map<&'static str, &'static [u8]> = phf_map! {
     "zip"  => &[0x50, 0x4B, 0x03, 0x04],
     "gzip" => &[0x1F, 0x8B],
     "bzip" => &[0x42, 0x5A, 0x68],
+    "bzip2" => &[0x42, 0x5A, 0x68],          // BZip2, "BZh"
+    "java_class" => &[0xCA, 0xFE, 0xBA, 0xBE],
+    "lha" => &[0x4C],  // Placeholder or check specific variant
+    "elf" => &[0x7F, 0x45, 0x4C, 0x46], // 0x7F followed by 'ELF'
 };
 
 /// Map of first byte to the corresponding magic number key(s)
@@ -86,17 +91,23 @@ pub static FIRST_BYTE_MAP: phf::Map<u8, &'static [&'static str]> = phf_map! {
     0xFFu8 => &["jpeg", "mp3_no_id3"],
     0x89u8 => &["png"],
     0x47u8 => &["gif"],
-    0x42u8 => &["bmp", "bzip"],
+    0x42u8 => &["bmp", "bzip", "bzip2"],
     0x49u8 => &["tiff_le", "mp3_id3"],
     0x4Du8 => &["tiff_be"],
     0x4Fu8 => &["ogg"],
     0x66u8 => &["flac"],
-    0x52u8 => &["riff"],
+    0x52u8 => &["riff", "rar"],
     0x00u8 => &["mpg_mpeg", "mp4", "mpeg_1b3"],
     0x1Au8 => &["mkv"],
     0x46u8 => &["flv"],
     0x50u8 => &["zip"],
     0x1Fu8 => &["gzip"],
+    0x25u8 => &["pdf"],
+    0x38u8 => &["gif"],
+    0x5Au8 => &["7z"],
+    0xCAu8 => &["java_class"],
+    0x4Cu8 => &["lha"],
+    0x7Fu8 => &["elf"],
 };
 
 /// Encoding to detect for locales
