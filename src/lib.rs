@@ -217,6 +217,10 @@ pub fn encode_bytes_from_language(html: &[u8], language: &str) -> String {
 pub fn auto_encode_bytes(html: &[u8]) -> String {
     use encoding_rs::{CoderResult, Encoding};
 
+    if html.is_empty() {
+        return String::new();
+    }
+
     if let Some(encoding) = detect_encoding(&html) {
         return encode_bytes(&html, &encoding);
     }
