@@ -58,9 +58,9 @@
 //! ```
 pub mod detect;
 pub mod meta;
-
 pub use detect::{detect_encoding, detect_language, find_subsequence, is_binary_file};
 use meta::ENCODINGS_BY_LOCALE;
+pub extern crate encoding_rs;
 
 /// Get encoding for the locale if found
 pub fn encoding_for_locale(locale: &str) -> Option<&'static encoding_rs::Encoding> {
