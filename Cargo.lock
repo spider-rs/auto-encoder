@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "auto_encoder"
-version = "0.1.9"
+version = "0.1.10"
 dependencies = [
  "chardetng",
  "encoding_rs",
