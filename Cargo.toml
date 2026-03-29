@@ -1,6 +1,6 @@
 [package]
 name = "auto_encoder"
-version = "0.1.10"
+version = "0.2.3"
 edition = "2021"
 description = "Auto encoding library"
 repository = "https://github.com/spider-rs/auto-encoder"
@@ -15,10 +15,14 @@ license = "MIT"
 
 [dependencies]
 phf = { version = "0.11", features = ["macros"] }
-phf_codegen = "0.11"
 chardetng = { version = "0.1" }
-percent-encoding = "2"
 encoding_rs = { version = "0.8" }
+memchr = "2"
 
 [dev-dependencies]
 maud = "0.26"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "detect"
+harness = false
