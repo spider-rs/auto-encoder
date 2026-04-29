@@ -236,6 +236,36 @@ mod tests {
     }
 
     #[test]
+    fn test_is_binary_file_skips_leading_whitespace() {
+        use crate::detect::is_binary_file_phf;
+
+        // Aestiva HTML/OS-style padded HTML (the shape served by
+        // seeleylake.com): nine leading newlines then `<!doctype html>`.
+        // Must not be classified as binary.
+        let padded = b"\n\n\n\n\n\n\n\n\n<!doctype html>\n<html></html>";
+        assert!(!is_binary_file(padded));
+        assert!(!is_binary_file_phf(padded));
+
+        // Whitespace prefix in front of a real magic header still detects
+        // the binary correctly.
+        let mut padded_png = Vec::from(&b"  \t\r\n"[..]);
+        padded_png.extend_from_slice(&[0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]);
+        assert!(is_binary_file(&padded_png));
+        assert!(is_binary_file_phf(&padded_png));
+
+        let mut padded_pdf = Vec::from(&b"\n\n"[..]);
+        padded_pdf.extend_from_slice(b"%PDF-1.4\n");
+        assert!(is_binary_file(&padded_pdf));
+        assert!(is_binary_file_phf(&padded_pdf));
+
+        // Whitespace-only / empty bodies are not binary.
+        assert!(!is_binary_file(b""));
+        assert!(!is_binary_file(b"   \t\n\r"));
+        assert!(!is_binary_file_phf(b""));
+        assert!(!is_binary_file_phf(b"   \t\n\r"));
+    }
+
+    #[test]
     fn test_encode_bytes() {
         let html_content = b"hello";
         let encoded = encode_bytes(html_content, "utf-8");
